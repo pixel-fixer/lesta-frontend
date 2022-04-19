@@ -1,8 +1,13 @@
 import './App.css'
+import Ships from './components/Ships'
+import Env from './components/Env'
+
 function App() {
-  return (
-      <div>1</div>
-  )
+    return (
+        <Env>
+            <Ships />
+        </Env>
+    )
 }
 
 export default App
