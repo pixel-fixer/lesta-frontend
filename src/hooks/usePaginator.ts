@@ -21,6 +21,7 @@ function usePaginator<T>({
     )
 
     const paginate = (offset: number) => {
+        setOffset(offset)
         setPaginatedItems(items.slice(offset, offset + PAGE_SIZE))
     }
 
@@ -33,7 +34,6 @@ function usePaginator<T>({
     const handleNextPage = () => {
         if (items.length > offset + PAGE_SIZE) {
             const newOffset = offset + PAGE_SIZE
-            setOffset(newOffset)
             paginate(newOffset)
         }
     }
@@ -41,7 +41,6 @@ function usePaginator<T>({
     const handlePrevPage = () => {
         if (offset - PAGE_SIZE >= 0) {
             const newOffset = offset - PAGE_SIZE
-            setOffset(newOffset)
             paginate(newOffset)
         }
     }
