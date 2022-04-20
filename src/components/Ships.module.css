@@ -1,0 +1,41 @@
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 24px;
+}
+
+.filterPanel {
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+    padding-bottom: 64px;
+}
+
+.filterButton {
+    font-family: WarheliosRegular_Web, sans-serif;
+    background: none;
+    border-color: hsla(0,0%,80%,.5);
+    border-width: 0 0 1px;
+    border-style: dashed;
+    color: #ccc;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: .43px;
+    transition: all .2s;
+    font-size: 17px;
+    line-height: 17px;
+    padding: 0 0 1px;
+}
+
+
+.filterButton:hover {
+    border-bottom: 1px dashed;
+    color: #fff;
+    text-decoration: none;
+}
