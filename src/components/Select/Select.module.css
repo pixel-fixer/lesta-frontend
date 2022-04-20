@@ -23,7 +23,6 @@
 }
 
 .options:before {
-    left: 36px;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAYAAAC9QufkAAABAUlEQVR42pyRTW6DMBCFMaYpTRfNKbIoe3bNIptabdIT8M8uh8ktcoCehDUcgB2hJIqyAERnkB25piFSRnqyn+d9T0IQbThEuz6dGhwL3xwiSZcVhuGr+qbk/ywolxHHMbNtewfnB3ppJ+cvEAYeUFEUMcuyvnVdP+IJ/lPspKIeFtAE9BgEgQAP4PdwntDDJ6xwz3OipL/gowngOwYppRWCoBxUKAUmzyPXmyff93vQMIwf8CUHc7UAcmvwU85pz67rCrD8BxwUeJ73hRx1HGeZJMkmTdNF0zRYdr7yS9uu67SiKOZ1Xc8YYxVt23abZdkbgGQEHBRA/oWguXd+BRgAN1Nmmu+s080AAAAASUVORK5CYII=) no-repeat;
     margin-bottom: -1px;
     margin-left: -7px;
@@ -38,12 +37,13 @@
 .option {
     color: #999;
     overflow: hidden;
-    padding: 0 18px;
-    line-height: 38px;
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
     transition: color .2s,background-color .2s;
+    font-size: 17px;
+    padding: 0 18px;
+    line-height: 38px;
 }
 
 .option.selected {
@@ -57,7 +57,7 @@
     letter-spacing: .43px;
     transition: all .2s;
     line-height: 16px;
-    padding: 0 12px 0 0;
+    padding: 0 12px 4px 0;
 }
 
 .option.selected:hover {
@@ -93,6 +93,6 @@
 }
 
 .optionIconImg {
-    width: 100%;
+    max-width: 100%;
 }
 
