@@ -1,0 +1,36 @@
+.container {
+    position: relative;
+    padding: 24px;
+    background-color: rgba(44, 67, 82, 0.6);
+    background-position: 24px 24px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.info {
+    display: inline-flex;
+    align-items: center;
+    /*background-color: rgba(0, 0, 0, 0.4);*/
+    /*padding: 4px 8px;*/
+    /*border-radius: 4px;*/
+    /*position: absolute;*/
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.name {
+    /*text-align: center;*/
+    color: #cbac77;
+    font-size: 18px;
+}
+
+.image {
+    max-width: 100%;
+}
+
+
