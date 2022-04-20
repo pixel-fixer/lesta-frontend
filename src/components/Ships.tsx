@@ -1,16 +1,12 @@
 import React, { useMemo, useState } from 'react'
 import useShips from '../hooks/useShips'
-import usePaginator from '../hooks/usePaginator'
-import { IVehicleDTO } from '../entities/Vehicle'
 import Select, { ISelectOption, TValue } from './Select'
 import Vehicle from './Vehicle'
+import Spinner from './Spinner'
 import styles from './Ships.module.css'
 
 const Ships = (): JSX.Element => {
     const { vehicles, vehicleTypes, nations, isLoading } = useShips()
-    const { items, prevPage, nextPage } = usePaginator<IVehicleDTO>({
-        items: vehicles,
-    })
     const vehicleTypeOptions: ISelectOption[] = useMemo(
         () => [
             {
@@ -58,17 +54,31 @@ const Ships = (): JSX.Element => {
     const [vehicleType, setVehicleType] = useState<TValue>(null)
     const [nation, setNation] = useState<TValue>(null)
 
-    console.log('SHIPS RENDER', vehicles, vehicleTypes, nations)
-    console.log('vehicleTypeOptions', vehicleTypeOptions)
+    const filteredItems = vehicles.filter((_) => {
+        if (nation && _.nation.name !== nation) {
+            return false
+        }
+        if (level && _.level !== level) {
+            return false
+        }
+
+        if (vehicleType && _.type.name !== vehicleType) {
+            return false
+        }
+
+        return true
+    })
+
+    // const { items, prevPage, nextPage } = usePaginator<IVehicleDTO>({
+    //     items: filteredItems,
+    // })
+
+    console.log('SHIPS RENDER')
 
     const handleResetFilters = () => {
         setLevel(null)
         setNation(null)
         setVehicleType(null)
-    }
-
-    if (isLoading) {
-        return <>Загрузка...</>
     }
 
     return (
@@ -79,36 +89,41 @@ const Ships = (): JSX.Element => {
                     alt=""
                 />
             </div>
-            <div className={styles.filterPanel}>
-                <div>
-                    <Select
-                        options={nationOptions}
-                        value={nation}
-                        onChange={(value) => setNation(value)}
-                    />
-                    <Select
-                        options={vehicleTypeOptions}
-                        value={vehicleType}
-                        onChange={(value) => setVehicleType(value)}
-                    />
-                    <Select
-                        options={levelOptions}
-                        value={level}
-                        onChange={(value) => setLevel(value)}
-                    />
-                </div>
-                <button
-                    className={styles.filterButton}
-                    onClick={handleResetFilters}
-                >
-                    Показать всё
-                </button>
-            </div>
-            {items.map((vehicle) => (
-                <Vehicle key={vehicle.title} vehicle={vehicle} />
-            ))}
-            <button onClick={prevPage}>prev page</button>
-            <button onClick={nextPage}>next page</button>
+            {isLoading && <Spinner />}
+            {!isLoading && (
+                <>
+                    <div className={styles.filterPanel}>
+                        <div>
+                            <Select
+                                options={nationOptions}
+                                value={nation}
+                                onChange={(value) => setNation(value)}
+                            />
+                            <Select
+                                options={vehicleTypeOptions}
+                                value={vehicleType}
+                                onChange={(value) => setVehicleType(value)}
+                            />
+                            <Select
+                                options={levelOptions}
+                                value={level}
+                                onChange={(value) => setLevel(value)}
+                            />
+                        </div>
+                        <button
+                            className={styles.filterButton}
+                            onClick={handleResetFilters}
+                        >
+                            Показать всё
+                        </button>
+                    </div>
+                    <div className={styles.vehicles}>
+                        {filteredItems.map((vehicle) => (
+                            <Vehicle key={vehicle.title} vehicle={vehicle} />
+                        ))}
+                    </div>
+                </>
+            )}
         </div>
     )
 }
