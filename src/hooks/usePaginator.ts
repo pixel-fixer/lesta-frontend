@@ -17,31 +17,28 @@ function usePaginator<T>({
 }: IUsePaginatorParams<T>): IUsePaginatorResult<T> {
     const [offset, setOffset] = useState(0)
     const [paginatedItems, setPaginatedItems] = useState<T[]>(
-        items.slice(offset, offset + PAGE_SIZE)
+        items.slice(0, PAGE_SIZE)
     )
 
+    useEffect(() => {
+        paginate(offset)
+    }, [offset])
+
     const paginate = (offset: number) => {
-        setOffset(offset)
         setPaginatedItems(items.slice(offset, offset + PAGE_SIZE))
     }
-
-    useEffect(() => {
-        if (items.length > 0) {
-            paginate(offset)
-        }
-    }, [items])
 
     const handleNextPage = () => {
         if (items.length > offset + PAGE_SIZE) {
             const newOffset = offset + PAGE_SIZE
-            paginate(newOffset)
+            setOffset(newOffset)
         }
     }
 
     const handlePrevPage = () => {
         if (offset - PAGE_SIZE >= 0) {
             const newOffset = offset - PAGE_SIZE
-            paginate(newOffset)
+            setOffset(newOffset)
         }
     }
 
