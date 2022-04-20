@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react'
-import useShips from '../hooks/useShips'
-import Select, { ISelectOption, TValue } from './Select'
-import Vehicle from './Vehicle'
-import Spinner from './Spinner'
+import useShips from '../../hooks/useShips'
+import Select, { ISelectOption, TValue } from '../Select'
+import Vehicle from '../Vehicle'
+import Spinner from '../Spinner'
 import styles from './Ships.module.css'
 
 const Ships = (): JSX.Element => {
